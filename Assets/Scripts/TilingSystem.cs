@@ -5,6 +5,7 @@ using TMPro;
 using System;
 
 [ExecuteAlways]
+[RequireComponent(typeof(Waypoint))]
 public class TilingSystem : MonoBehaviour
 {
     [SerializeField] TextMeshPro _coordinates;
@@ -27,11 +28,12 @@ public class TilingSystem : MonoBehaviour
             UpdateCoordinates();
         }
 
-        UpdateCoordinatesColor();
+        SetLabelColor();
+        ToggleLabels();
         
     }
 
-    void UpdateCoordinatesColor()
+    void SetLabelColor()
     {
         if(waipoint.IsPlaceable)
         {
@@ -41,8 +43,8 @@ public class TilingSystem : MonoBehaviour
         {
             _coordinates.color = _blockedColor;
         }
-        ToggleLabels();
     }
+    
     void ToggleLabels()
     {
         if(Input.GetKeyDown(KeyCode.C))

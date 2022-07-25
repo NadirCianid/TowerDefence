@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] List<Transform> _path = new List<Transform>();
@@ -12,7 +13,7 @@ public class EnemyMovement : MonoBehaviour
         FindPath();
         MoveToTheStart();
         StartCoroutine(Mooving());
-        _enemy = FindObjectOfType<Enemy>();
+        _enemy = GetComponent<Enemy>();
     }
 
     void FindPath()
@@ -38,18 +39,21 @@ public class EnemyMovement : MonoBehaviour
             float interpolationPersentage = 0;
             transform.LookAt(endPosition);
 
-            while(interpolationPersentage<1f)
+            while (interpolationPersentage < 1f)
             {
-                
-                interpolationPersentage+=Time.deltaTime*_speed;
+
+                interpolationPersentage += Time.deltaTime * _speed;
                 transform.position = Vector3.Lerp(startPosition, endPosition, interpolationPersentage);
                 yield return new WaitForEndOfFrame();
             }
-            
-        }
-        gameObject.SetActive(false);
-        _enemy.StealGold();
 
+        }
+        FinishPath();
     }
 
+    private void FinishPath()
+    {
+        gameObject.SetActive(false);
+        _enemy.StealGold();
+    }
 }

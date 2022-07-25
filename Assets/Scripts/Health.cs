@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Enemy))]
 public class Health : MonoBehaviour
 {
     [SerializeField] int _maxHealthPoints = 10;
@@ -13,7 +14,7 @@ public class Health : MonoBehaviour
     void OnEnable() 
     {
         _currentHealthPoints = _maxHealthPoints;
-        _enemy = FindObjectOfType<Enemy>();
+        _enemy = GetComponent<Enemy>();
     }
 
 

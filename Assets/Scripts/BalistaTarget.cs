@@ -10,9 +10,6 @@ public class BalistaTarget : MonoBehaviour
     Transform _target;
 
 
-    
-    
-
     void Update() 
     {
         FindClosestTarget();
@@ -25,7 +22,6 @@ public class BalistaTarget : MonoBehaviour
             _balistaHead.transform.LookAt(_target);
             Attack(_isInRange);
         }
-        
     }
 
     void Attack(bool _isInRange)
