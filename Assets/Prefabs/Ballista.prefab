@@ -4977,6 +4977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7139414284049667605}
   - component: {fileID: 5483105168161864333}
+  - component: {fileID: 1486119996404110358}
   m_Layer: 0
   m_Name: Ballista
   m_TagString: Untagged
@@ -5009,7 +5010,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7343447233296985778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c7cf380df459cf4a9ff4ee0ef747626, type: 3}
+  m_Script: {fileID: 11500000, guid: f8283afbfc7638e44815bb297441dd6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _balistaHead: {fileID: 2040440540423185123}
+  _fireRange: 50
+  _bolts: {fileID: 7130150907088003121}
+--- !u!114 &1486119996404110358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343447233296985778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22281feab6d8fb94ca09469cb3ed386b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _towerCost: 50

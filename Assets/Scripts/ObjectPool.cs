@@ -43,13 +43,6 @@ public class ObjectPool : MonoBehaviour
 
         while(true)
         {
-            
-            // foreach( GameObject _clone in _pool)
-            // {
-            //     _clone.SetActive(true);
-            //     
-            // }
-
             EnableObjectsInPool();
             yield return new WaitForSeconds(_delay);
 

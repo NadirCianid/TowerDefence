@@ -5,19 +5,17 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] int _maxHealthPoints = 10;
-    int _currentHealthPoints;
     [SerializeField] int _damage = 1;
     [SerializeField] bool isEnemy = true;
+    int _currentHealthPoints;
+    Enemy _enemy;
 
     void OnEnable() 
     {
         _currentHealthPoints = _maxHealthPoints;
+        _enemy = FindObjectOfType<Enemy>();
     }
 
-    void Update()
-    {
-        
-    }
 
     void OnParticleCollision(GameObject other)
     {
@@ -30,6 +28,7 @@ public class Health : MonoBehaviour
         if (_currentHealthPoints <= 0)
         {
             gameObject.SetActive(false);
+            _enemy.RewardGold();
         }
     }
 }

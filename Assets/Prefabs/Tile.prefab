@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isPlaceable: 1
-  _balistaPrefab: {fileID: 7343447233296985778, guid: 4cd43a5048578d0469d8ae7e47888be8, type: 3}
+  _tower: {fileID: 1486119996404110358, guid: 4cd43a5048578d0469d8ae7e47888be8, type: 3}
 --- !u!65 &7453873797609359479
 BoxCollider:
   m_ObjectHideFlags: 0
