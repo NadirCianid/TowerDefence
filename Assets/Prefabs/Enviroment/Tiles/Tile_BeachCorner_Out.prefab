@@ -313,7 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe10068363bc2724a8789d1aa6c5e20b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isPlaceable: 1
+  _isPlaceable: 0
   _tower: {fileID: 1486119996404110358, guid: 4cd43a5048578d0469d8ae7e47888be8, type: 3}
 --- !u!65 &8550006910889062467
 BoxCollider:
