@@ -16,11 +16,23 @@ public class TilingSystem : MonoBehaviour
     float x,y;
     string _tileName;
 
-    void Awake() 
-    {  
-        waipoint = GetComponent<Waypoint>(); 
+    void Awake()
+    {
+        waipoint = GetComponent<Waypoint>();
         UpdateCoordinates();
+        
+        
     }
+
+        void Start()
+    {
+        _coordinates.enabled = false;
+        if(!Application.isPlaying)
+        {
+            _coordinates.enabled = true;
+        }
+    }
+
     void Update()
     {
         if(!Application.isPlaying)
@@ -55,8 +67,8 @@ public class TilingSystem : MonoBehaviour
 
     void UpdateCoordinates()
     {
-        x = transform.position.x / UnityEditor.EditorSnapSettings.move.x;
-        y = transform.position.z / UnityEditor.EditorSnapSettings.move.z;
+        x = transform.position.x / 16;
+        y = transform.position.z / 16;
         _coordinates.text = "[" + x.ToString() + "," + y.ToString() + "]";
         transform.name = _coordinates.text;
     }

@@ -5014,7 +5014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _balistaHead: {fileID: 2040440540423185123}
-  _fireRange: 50
+  _fireRange: 30
   _bolts: {fileID: 7130150907088003121}
 --- !u!114 &1486119996404110358
 MonoBehaviour:
