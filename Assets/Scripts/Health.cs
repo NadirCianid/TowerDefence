@@ -7,7 +7,6 @@ public class Health : MonoBehaviour
 {
     [SerializeField] int _maxHealthPoints = 10;
     [SerializeField] int _damage = 1;
-    [SerializeField] bool isEnemy = true;
     int _currentHealthPoints;
     Enemy _enemy;
 

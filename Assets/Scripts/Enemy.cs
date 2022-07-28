@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
    Bank _bank;
+   
    [SerializeField] int _rewardAmount = 25;
    [SerializeField] int _stealAmount = 25;
 

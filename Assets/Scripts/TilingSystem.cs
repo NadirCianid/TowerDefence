@@ -17,7 +17,7 @@ public class TilingSystem : MonoBehaviour
     string _tileName;
 
     void Awake() 
-    {
+    {  
         waipoint = GetComponent<Waypoint>(); 
         UpdateCoordinates();
     }

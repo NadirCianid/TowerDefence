@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Bank : MonoBehaviour
 {
+    GameManager _gameManager;
+    UIManager _UIManager;
+
     [SerializeField] int _startingBalance = 100;
     [SerializeField] int _currentBalance;
+  
     public int CurrentBalance { get {return _currentBalance;}}
-    UIManager _UIManager;
-    private void Awake() {
+    
+    void Awake() {
         _currentBalance = _startingBalance;
         _UIManager = FindObjectOfType<UIManager>();
+        _gameManager = FindObjectOfType<GameManager>();
         _UIManager.UpdateUI(_currentBalance);
     }
 
@@ -26,7 +31,7 @@ public class Bank : MonoBehaviour
 
         if(_currentBalance < 0) 
         {
-            Debug.Log("Game Over!");
+            _gameManager.ReloadScene();
             _UIManager.UpdateUI(0);
         }
     }

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _path: []
-  _speed: 0.6
+  _speed: 5
 --- !u!65 &2229097090422444049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76,7 +76,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealthPoints: 10
   _damage: 1
-  isEnemy: 1
 --- !u!114 &4483069906624457939
 MonoBehaviour:
   m_ObjectHideFlags: 0
