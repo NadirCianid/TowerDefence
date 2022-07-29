@@ -30,6 +30,7 @@ public class TilingSystem : MonoBehaviour
         if(!Application.isPlaying)
         {
             _coordinates.enabled = true;
+            
         }
     }
 
