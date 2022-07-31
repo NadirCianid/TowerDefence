@@ -14,11 +14,13 @@ public class BalistaTarget : MonoBehaviour
     {
         FindClosestTarget();
 
-        float _currentDistance = Vector3.Distance(transform.position, _target.position);
-        bool _isInRange = _currentDistance < _fireRange;
+        
 
         if(_target != null)
         {
+            float _currentDistance = Vector3.Distance(transform.position, _target.position);
+            bool _isInRange = _currentDistance < _fireRange;
+
             _balistaHead.transform.LookAt(_target);
             Attack(_isInRange);
         }
@@ -35,8 +37,9 @@ public class BalistaTarget : MonoBehaviour
         EnemyMovement[] _enemies = FindObjectsOfType<EnemyMovement>();
         float _maxDistance = Mathf.Infinity;
         Transform _closestTarget = null;
-
-        foreach(EnemyMovement _enemy in _enemies)
+        if(_enemies != null)
+        {
+            foreach(EnemyMovement _enemy in _enemies)
         {
             float _currentDistance = Vector3.Distance(transform.position, _enemy.transform.position);
 
@@ -48,6 +51,8 @@ public class BalistaTarget : MonoBehaviour
         }
 
         _target = _closestTarget;
+        }
+        
     }
 
 }

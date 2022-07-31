@@ -13,7 +13,7 @@ PrefabInstance:
       objectReference: {fileID: -2432090755550338912, guid: 626410dc07212d749823da2540a223bb, type: 3}
     - target: {fileID: 4115087872847369155, guid: 9b69746e0295d17409a3bf8ef504bddb, type: 3}
       propertyPath: _isPlaceable
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4707926788784419963, guid: 9b69746e0295d17409a3bf8ef504bddb, type: 3}
       propertyPath: m_text

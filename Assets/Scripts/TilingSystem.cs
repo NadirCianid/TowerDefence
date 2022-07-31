@@ -5,7 +5,7 @@ using TMPro;
 using System;
 
 [ExecuteAlways]
-[RequireComponent(typeof(Waypoint))]
+[RequireComponent(typeof(Tile))]
 public class TilingSystem : MonoBehaviour
 {
     [SerializeField] TextMeshPro _coordinates;
@@ -13,14 +13,14 @@ public class TilingSystem : MonoBehaviour
     [SerializeField] Color _blockedColor = Color.grey;
     [SerializeField] Color _exploredColor = Color.yellow;
     [SerializeField] Color _pathColor = Color.green;
-    GridManager gridManager;
+    GridManager _gridManager;
     
     int x,y;
     string _tileName;
 
     void Awake()
     {
-        gridManager = FindObjectOfType<GridManager>();
+        _gridManager = FindObjectOfType<GridManager>();
         UpdateCoordinates();
     }
 
@@ -48,11 +48,11 @@ public class TilingSystem : MonoBehaviour
     void SetLabelColor()
     {
         Vector2Int _nodeCoordinates = new Vector2Int(x,y);
-        Node _node = gridManager.GetNode(_nodeCoordinates);
+        Node _node = _gridManager.GetNode(_nodeCoordinates);
         
         if(_node!=null)
         {
-            if(!_node.isWalkeble)
+            if(!_node.isWalkable)
             {
                 _coordinates.color = _blockedColor;
             }
@@ -79,8 +79,8 @@ public class TilingSystem : MonoBehaviour
 
     void UpdateCoordinates()
     {
-        x = (int)transform.position.x / 16;
-        y = (int)transform.position.z / 16;
+        x = (int)transform.position.x / _gridManager.UnityGridSize;
+        y = (int)transform.position.z / _gridManager.UnityGridSize;
         _coordinates.text = "[" + x.ToString() + "," + y.ToString() + "]";
         transform.name = _coordinates.text;
     }
