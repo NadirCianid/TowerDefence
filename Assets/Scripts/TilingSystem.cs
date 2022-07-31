@@ -10,18 +10,18 @@ public class TilingSystem : MonoBehaviour
 {
     [SerializeField] TextMeshPro _coordinates;
     [SerializeField] Color _defaultColor = Color.white;
-    [SerializeField] Color _blockedColor = Color.red;
-    Waypoint waipoint;
+    [SerializeField] Color _blockedColor = Color.grey;
+    [SerializeField] Color _exploredColor = Color.yellow;
+    [SerializeField] Color _pathColor = Color.green;
+    GridManager gridManager;
     
-    float x,y;
+    int x,y;
     string _tileName;
 
     void Awake()
     {
-        waipoint = GetComponent<Waypoint>();
+        gridManager = FindObjectOfType<GridManager>();
         UpdateCoordinates();
-        
-        
     }
 
         void Start()
@@ -30,7 +30,6 @@ public class TilingSystem : MonoBehaviour
         if(!Application.isPlaying)
         {
             _coordinates.enabled = true;
-            
         }
     }
 
@@ -48,14 +47,26 @@ public class TilingSystem : MonoBehaviour
 
     void SetLabelColor()
     {
-        if(waipoint.IsPlaceable)
+        Vector2Int _nodeCoordinates = new Vector2Int(x,y);
+        Node _node = gridManager.GetNode(_nodeCoordinates);
+        
+        if(_node!=null)
         {
-            _coordinates.color = _defaultColor;
+            if(!_node.isWalkeble)
+            {
+                _coordinates.color = _blockedColor;
+            }
+            else if(_node.isPath)
+                {
+                    _coordinates.color = _pathColor;
+                }
+                else if(_node.isExplored)
+                    {
+                        _coordinates.color = _exploredColor;
+                    }
+                    else _coordinates.color = _defaultColor;
         }
-        else
-        {
-            _coordinates.color = _blockedColor;
-        }
+        
     }
     
     void ToggleLabels()
@@ -68,8 +79,8 @@ public class TilingSystem : MonoBehaviour
 
     void UpdateCoordinates()
     {
-        x = transform.position.x / 16;
-        y = transform.position.z / 16;
+        x = (int)transform.position.x / 16;
+        y = (int)transform.position.z / 16;
         _coordinates.text = "[" + x.ToString() + "," + y.ToString() + "]";
         transform.name = _coordinates.text;
     }
