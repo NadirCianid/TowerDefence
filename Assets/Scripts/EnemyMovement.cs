@@ -5,37 +5,47 @@ using UnityEngine;
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] List<Transform> _path = new List<Transform>();
     [SerializeField] [Range(0, 5)] float _speed;
+    List<Node> _path = new List<Node>();
     Enemy _enemy;
+    GridManager _grid;
+    Pathfinder _pathfinder;
     void OnEnable()
     {
-        FindPath();
         MoveToTheStart();
-        StartCoroutine(Mooving());
-        _enemy = GetComponent<Enemy>();
+        RecalculatePath(true);
     }
 
-    void FindPath()
+    void Awake() 
     {
-        _path.Clear();
-        GameObject _parent = GameObject.FindGameObjectWithTag("Path");
+        _enemy = GetComponent<Enemy>();
+        _grid = FindObjectOfType<GridManager>();
+        _pathfinder = FindObjectOfType<Pathfinder>();
 
-        foreach(Transform _child in _parent.transform)
-        {
-            _path.Add(_child);
-        }
+    }
+
+    void RecalculatePath(bool _resetPath)
+    {
+        Vector2Int _coordinates = new Vector2Int();
+        if(_resetPath){ _coordinates = _pathfinder.StartCoordinates;}
+        else {_coordinates = _grid.GetCoordinatesFromPosition(transform.position);}
+        //_coordinates = _grid.GetCoordinatesFromPosition(transform.position);
+        
+        StopAllCoroutines();
+        _path.Clear();
+        _path = _pathfinder.GetNewPath(_coordinates);
+        StartCoroutine(Mooving());
     }
     void MoveToTheStart()
     {
-        transform.position = _path[0].transform.position;
+        transform.position =  _grid.GetPositionFromCoordinates(_pathfinder.StartCoordinates);
     }
     IEnumerator Mooving()
     {
-        foreach (Transform waypoint in _path)
+        for(int i=1; i<_path.Count; i++)
         {
             Vector3 startPosition = transform.position;
-            Vector3 endPosition = waypoint.position;
+            Vector3 endPosition = _grid.GetPositionFromCoordinates(_path[i].coordinates);
             float interpolationPersentage = 0;
             transform.LookAt(endPosition);
 

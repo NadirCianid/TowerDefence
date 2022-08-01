@@ -6,6 +6,7 @@ using UnityEngine;
 public class Pathfinder : MonoBehaviour
 {
     [SerializeField] Vector2Int _startCoordinates;
+    public Vector2Int StartCoordinates { get{ return _startCoordinates;}}
     [SerializeField] Vector2Int _destinationNodeCoordinates;
 
     Node _currentSearchNode;
@@ -23,22 +24,24 @@ public class Pathfinder : MonoBehaviour
     void Awake()
     {
         _gridManager = FindObjectOfType<GridManager>();
+        InitializeEdges();
     }
     void Start()
     {
-        InitializeEdges();
-
         GetNewPath();
     }
 
-    public List<Node> GetNewPath()
+    public List<Node> GetNewPath(Vector2Int _curentPositionCoordinates)
     {
         _gridManager.ResetNodes(); 
 
-        BreadthFirstSearch();
+        BreadthFirstSearch(_curentPositionCoordinates);
         
         return BuildPath();
-         
+    }
+    public List<Node> GetNewPath()
+    {
+        return GetNewPath(_startCoordinates);
     }
 
     void InitializeEdges()
@@ -75,19 +78,22 @@ public class Pathfinder : MonoBehaviour
         
     }
 
-    void BreadthFirstSearch()
+    void BreadthFirstSearch(Vector2Int _curentPositionCoordinates)
     {
+        _startNode.isWalkable = true;
+        _destinationNode.isWalkable = true;
+
         _frontier.Clear();
         _reached.Clear();
 
         bool _isRuning = true;
-        _frontier.Enqueue(_startNode);
-        _reached.Add(_startCoordinates, _startNode);
+
+        _frontier.Enqueue(_gridManager.Grid[_curentPositionCoordinates]);
+        _reached.Add(_curentPositionCoordinates, _gridManager.Grid[_curentPositionCoordinates]);
 
         while(_frontier.Count > 0 && _isRuning)
         {
             _currentSearchNode = _frontier.Dequeue();
-            Debug.Log(_currentSearchNode.coordinates);
             _currentSearchNode.isExplored = true;
             ExploreNeighbors();
             
@@ -141,5 +147,10 @@ public class Pathfinder : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void  NotifyRecievers()
+    {
+        BroadcastMessage("RecalculatePath",false ,SendMessageOptions.DontRequireReceiver);
     }
 }

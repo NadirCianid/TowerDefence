@@ -668,6 +668,21 @@
     <Reference Include="UnityEngine.UI">
         <HintPath>D:\Unity Projects\Experementing\Tower Defence\Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.AdaptivePerformance.Editor">
+        <HintPath>D:\Unity Projects\Experementing\Tower Defence\Library\ScriptAssemblies\Unity.AdaptivePerformance.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AdaptivePerformance">
+        <HintPath>D:\Unity Projects\Experementing\Tower Defence\Library\ScriptAssemblies\Unity.AdaptivePerformance.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AdaptivePerformance.Simulator.Extension">
+        <HintPath>D:\Unity Projects\Experementing\Tower Defence\Library\ScriptAssemblies\Unity.AdaptivePerformance.Simulator.Extension.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Subsystem.Registration">
+        <HintPath>D:\Unity Projects\Experementing\Tower Defence\Library\ScriptAssemblies\Unity.Subsystem.Registration.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.AdaptivePerformance.Simulator.Editor">
+        <HintPath>D:\Unity Projects\Experementing\Tower Defence\Library\ScriptAssemblies\Unity.AdaptivePerformance.Simulator.Editor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
